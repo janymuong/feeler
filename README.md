@@ -1,7 +1,7 @@
-### **MoodLens - Sentiment Analysis**  
+### **`feelr` - Sentiment Analysis**  
 > The Machine Learning model was trained on the [Sentiment 140](https://www.tensorflow.org/datasets/catalog/sentiment140) dataset.
 
-MoodLens is a web application that packages a machine learning model to analyze text sentiment. It allows users to input text, view sentiment predictions, track their history, and visualize mood trends over time. The app features a secure backend with user authentication and a responsive, user-friendly frontend.
+`feelr` is a web application that packages a machine learning model to analyze text sentiment. It allows users to input text, view sentiment predictions, track their history, and visualize mood trends over time. The app features a secure backend with user authentication and a responsive, user-friendly frontend.
 
 
 ### **Features**
@@ -22,25 +22,25 @@ MoodLens is a web application that packages a machine learning model to analyze 
 
 ### **Setup Instructions:**
 ```bash
-git clone https://github.com/Jeff-kimani/moodlens.git
+git clone git@github.com:janymuong/feeler.git
 ```
 #### **1. Backend**
 1. Install dependencies:
    ```bash
-   cd moodlens
+   cd feeler
    pip install -r requirements.txt
    ```
 2. Configure `.env` with the following variables:
    ```
    DJANGO_SECRET_KEY=your_secret_key
-   DB_NAME=moodlens
+   DB_NAME=feeler # database
    DB_USER=your_db_user
    DB_PASSWORD=your_db_password
    DB_HOST=localhost
    DB_PORT=5432
    ```
 3. Run migrations and start the server:
-   ```bash
+   ```bash 
    python manage.py migrate
    python manage.py runserver
    ```
@@ -49,7 +49,7 @@ git clone https://github.com/Jeff-kimani/moodlens.git
 1. Navigate to the frontend directory:
    ```bash
    # do in root directory;
-   cd moodlens-frontend
+   cd FE-feeler
    ```
 2. Install dependencies:
    ```bash
@@ -76,12 +76,16 @@ git clone https://github.com/Jeff-kimani/moodlens.git
 ### **Usage**
 1. Register or log in to the app.
 2. Navigate to the **Model** page to analyze text sentiment.
-3. View past analyses in the **Mood History** section.
-4. Explore mood trends/visualization in the **Mood Graphs** section.
+3. View past analyses in the **Emotion History** section.
+4. Explore mood trends/visualization in the **Emotion Graphs** section.
 5. Log out.
 
 ---
 
 ### **Contributors**
-- [Jany Muong ](https://github.com/janymuong) 
-- Jeff Chege  
+- [Jany Muong ](https://github.com/janymuong)  
+- Joram Kireki  
+- Gatmach Yuol Nyuon  
+- Josphat Waweru Thumi  
+- Akech Atem  
+- Vincent Ohanga  
