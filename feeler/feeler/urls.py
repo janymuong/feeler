@@ -1,4 +1,4 @@
-# moodlens/urls.py
+# feelr/urls.py
 """
 URL configuration for moodlens project.
 

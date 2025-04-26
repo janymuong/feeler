@@ -1,21 +1,26 @@
-### **`feelr` - Sentiment Analysis**  
+### **`Feelr` - a Sentiment Analysis Platform Using NLP**  
 > The Machine Learning model was trained on the [Sentiment 140](https://www.tensorflow.org/datasets/catalog/sentiment140) dataset.
 
-`feelr` is a web application that packages a machine learning model to analyze text sentiment. It allows users to input text, view sentiment predictions, track their history, and visualize mood trends over time. The app features a secure backend with user authentication and a responsive, user-friendly frontend.
+
+### Premise
+This is what `feelr` does - it is a web application that packages machine learning(narural language processing) models to analyze text sentiment. It allows users to input text, view sentiment predictions, track their history, and visualize sentiment trends over time. The app features a secure backend with user authentication and a responsive, user-friendly frontend.
+
+#### Feeler Landing Page:
+You can find more information about `Feeler` on this [webpage](https://ohangadon.github.io/FEELER-WEB/)
 
 
 ### **Features**
-- **User Authentication**: secure registration, login, and logout using JWT.
 - **Sentiment Analysis**: analyze text and receive sentiment predictions with confidence scores.
 - **History Tracking**: save and view past sentiment analyses in a Twitter-like interface.
-- **Mood Visualization**: view mood trends using interactive graphs.
+- **Customer Sentiment Visuals**: sentiment trends using interactive graphs and word clouds.
+- **User Authentication**: secure registration, login, and logout using JWT.
 - **Responsive Design**: works seamlessly on both desktop only for now.
 
 
 ### **Tech Stack**
 - **Frontend**: React.js, Chart.js
 - **Backend**: Django, Django REST Framework
-- **Machine Learning**: TensorFlow for sentiment prediction
+- **Machine Learning**: TensorFlow for sentiment prediction + Twitter-roBERTa Transformer model
 - **Database**: PostgreSQL
 
 ---
@@ -24,7 +29,32 @@
 ```bash
 git clone git@github.com:janymuong/feeler.git
 ```
-#### **1. Backend**
+
+
+---
+#### 1. Backend Set-Up
+
+It's recommended to leverage a virtual environment whenever using Python for projects. This keeps your dependencies for each project separate and organized. Instructions for setting up a virtual environment for your platform can be found in the [Python Docs](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/).
+
+
+- Create a siloed virtual environment with **Python 3.12** and **activate** it. You should have **Python 3.12** available in your host/local machine. 
+Check the Python path using: 
+```bash
+$ which python3
+```
+```bash
+$ python3 -m pip install --user virtualenv 
+# use a command similar to this one to create environment(working dir: feeler(backend)):
+$ python3 -m virtualenv --python=<path-to-python3.12> ../.feelr_env/
+$ source ../.feelr_env//bin/activate
+```
+> Alternatively, you could setup the virtual environment via `make setup` in this [`Makefile`](./Makefile).
+
+- Run `make install` to install **Django**, **TensorFlow** and other dependencies for it. This will install all relevant pip packages for the project.
+
+
+
+##### **Stand Up Backend**
 1. Install dependencies:
    ```bash
    cd feeler
@@ -80,12 +110,19 @@ git clone git@github.com:janymuong/feeler.git
 4. Explore mood trends/visualization in the **Emotion Graphs** section.
 5. Log out.
 
----
 
-### **Contributors**
-- [Jany Muong ](https://github.com/janymuong)  
-- Joram Kireki  
-- Gatmach Yuol Nyuon  
-- Josphat Waweru Thumi  
-- Akech Atem  
-- Vincent Ohanga  
+---
+### **Feeler Developers**
+
+
+<div style="border: 2px solid #000; padding: 10px; width: fit-content; border-radius: 5px;">
+  
+  <ul>
+    <li><a href="https://github.com/janymuong">Jany Muong</a></li>
+    <li><a href="https://github.com/Joram-kireki">Joram Kireki</a></li>
+    <li><a href="https://github.com/OhangaDon">Vincent Ohanga</a></li>
+    <li><a href="https://github.com/Gatmach">Gatmach Yuol Nyuon</a></li>
+    <li><a href="https://github.com/J-Thumi">Josphat Waweru Thumi</a></li>
+    <li><a href="https://github.com/akechsmith">Akech Atem</a></li>
+  </ul>
+</div>
