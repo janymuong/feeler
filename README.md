@@ -31,7 +31,6 @@ git clone git@github.com:janymuong/feeler.git
 ```
 
 
----
 #### 1. Backend Set-Up
 
 It's recommended to leverage a virtual environment whenever using Python for projects. This keeps your dependencies for each project separate and organized. Instructions for setting up a virtual environment for your platform can be found in the [Python Docs](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/).
@@ -46,7 +45,7 @@ $ which python3
 $ python3 -m pip install --user virtualenv 
 # use a command similar to this one to create environment(working dir: feeler(backend)):
 $ python3 -m virtualenv --python=<path-to-python3.12> ../.feelr_env/
-$ source ../.feelr_env//bin/activate
+$ source ../.feelr_env/bin/activate
 ```
 > Alternatively, you could setup the virtual environment via `make setup` in this [`Makefile`](./Makefile).
 
@@ -114,15 +113,13 @@ $ source ../.feelr_env//bin/activate
 ---
 ### **Feeler Developers**
 
-
 <div style="border: 2px solid #000; padding: 10px; width: fit-content; border-radius: 5px;">
-  
-  <ul>
-    <li><a href="https://github.com/janymuong">Jany Muong</a></li>
-    <li><a href="https://github.com/Joram-kireki">Joram Kireki</a></li>
-    <li><a href="https://github.com/OhangaDon">Vincent Ohanga</a></li>
-    <li><a href="https://github.com/Gatmach">Gatmach Yuol Nyuon</a></li>
-    <li><a href="https://github.com/J-Thumi">Josphat Waweru Thumi</a></li>
-    <li><a href="https://github.com/akechsmith">Akech Atem</a></li>
-  </ul>
+
+- [Jany Muong ](https://github.com/janymuong)  
+- [Joram Kireki ](https://github.com/Joram-kireki)  
+- [Vincent Ochieng ](https://github.com/OhangaDon)
+- [Gatmach Yuol Nyuon](https://github.com/Gatmach) 
+- [Josphat Waweru Thumi](https://github.com/J-Thumi)
+- [Akech Atem](https://github.com/akechsmith)
+
 </div>
