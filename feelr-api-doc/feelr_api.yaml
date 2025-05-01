@@ -1,0 +1,230 @@
+openapi: 3.0.0
+info:
+  title: Feeler Sentiment Analysis API
+  description: |
+    NLP-powered sentiment analysis platform with user authentication and history tracking.
+    - Predict emotions from text
+    - User registration/login
+    - Historical sentiment tracking
+    - Visualization data generation
+  version: 1.0.0
+  contact:
+    name: Feeler Developers
+    url: /https://github.com/feeler
+
+servers:
+  - url: http://localhost:8000/api
+    description: Local development server
+  - url: https://api.feeler.app/v1
+    description: Production server
+
+tags:
+  - name: Authentication
+    description: User registration and token management
+  - name: Sentiment Analysis
+    description: Core NLP prediction endpoints
+  - name: History
+    description: User sentiment history tracking
+  - name: Visualization
+    description: Data for sentiment trend visualization
+
+paths:
+  /protected/:
+    get:
+      tags: [Authentication]
+      summary: Test authentication endpoint
+      description: Verify JWT authentication is working
+      # security:
+      #   - bearerAuth: []
+      responses:
+        200:
+          description: Successful authentication
+          content:
+            application/json:
+              example: {"message": "API running - you're authenticated"}
+        401:
+          description: Unauthorized
+
+  /register/:
+    post:
+      tags: [Authentication]
+      summary: Register new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: "new_user"
+                password:
+                  type: string
+                  example: "securepassword123"
+                email:
+                  type: string
+                  format: email
+                  example: "user@example.com"
+              required: [username, password]
+      responses:
+        201:
+          description: User created successfully
+          content:
+            application/json:
+              example: {"message": "User registered successfully"}
+        400:
+          description: Bad request (missing fields or username exists)
+
+  /token/:
+    post:
+      tags: [Authentication]
+      summary: Obtain JWT token pair
+      description: Returns access and refresh tokens for authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: "existing_user"
+                password:
+                  type: string
+                  example: "securepassword123"
+              required: [username, password]
+      responses:
+        200:
+          description: Tokens generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access:
+                    type: string
+                  refresh:
+                    type: string
+
+  /token/refresh/:
+    post:
+      tags: [Authentication]
+      summary: Refresh access token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refresh:
+                  type: string
+                  description: Refresh token
+              required: [refresh]
+      responses:
+        200:
+          description: New access token generated
+        401:
+          description: Invalid refresh token
+
+  /logout/:
+    post:
+      tags: [Authentication]
+      summary: Logout user (invalidate refresh token)
+      # security:
+      #   - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refresh_token:
+                  type: string
+              required: [refresh_token]
+      responses:
+        205:
+          description: Logout successful
+        400:
+          description: Invalid token
+
+  /predict/:
+    post:
+      tags: [Sentiment Analysis]
+      summary: Analyze text sentiment
+      description: Uses NLP model to predict emotion from input text
+      # security:
+      #   - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                  example: "I'm feeling great today!"
+              required: [text]
+      responses:
+        200:
+          description: Prediction successful
+          content:
+            application/json:
+              example:
+                sentiment: "positive"
+                confidence: 0.92
+        400:
+          description: Invalid input or prediction error
+
+  /history/:
+    get:
+      tags: [History]
+      summary: Get user's sentiment history
+      description: Returns last 5 sentiment analyses for the authenticated user
+      # security:
+        # - bearerAuth: []
+      responses:
+        200:
+          description: History retrieved
+          content:
+            application/json:
+              example:
+                - text: "I'm happy"
+                  sentiment: "positive"
+                  confidence: 0.95
+                  created_at: "2023-05-15T14:30:00Z"
+                - text: "This is terrible"
+                  sentiment: "negative"
+                  confidence: 0.88
+                  created_at: "2023-05-14T09:15:00Z"
+        400:
+          description: Error retrieving history
+
+  /visualization/:
+    get:
+      tags: [Visualization]
+      summary: Get visualization data
+      description: Returns formatted data for sentiment trend visualization
+      # security:
+      #   - bearerAuth: []
+      responses:
+        200:
+          description: Data retrieved
+          content:
+            application/json:
+              example:
+                labels: ["2023-05-15 14:30", "2023-05-14 09:15"]
+                sentiments: [1, -1]
+        400:
+          description: Error generating visualization data
+
+
+
+  bearerAuth:
+    type: http
+    scheme: bearer
+    bearerFormat: JWT
